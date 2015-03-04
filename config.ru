@@ -7,4 +7,4 @@ get '/' do
   erb :hello
 end
 
-run Sinatra::Application.run!
+run Sinatra::Application
