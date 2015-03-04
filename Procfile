@@ -1,1 +1,1 @@
-web: rack config.ru --port 8080
+web: rackup config.ru --port 8080
