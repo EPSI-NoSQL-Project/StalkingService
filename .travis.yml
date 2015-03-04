@@ -1,8 +1,9 @@
 language: ruby
 rvm:
+  - 2.1.0
   - 1.9.3
-  - jruby-18mode # JRuby in 1.8 mode
-  - jruby-19mode # JRuby in 1.9 mode
+  - jruby-19mode
   - rbx-2.1.1
-  - 1.8.7
-
+deploy:
+  api_key:
+    secure: ZE2yQmOnGk3EpekiKBU0RwX3X6Uu35KFDj4vp9sxyRhbbiI9EavNrAkuFJlIbyUfhHryUPqlWAIrj4FkdmrL5CWlXjbUBYkRnL0mKj8NyeOPXmjTzsqt+0+s7S9V2HxXcfgFRIqDCYDN27uJAg3NYg6JD9sDvzwFXAT6BLOhAfA=
