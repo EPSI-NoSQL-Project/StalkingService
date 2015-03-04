@@ -8,5 +8,5 @@ deploy:
   provider: heroku
   app: stalking-service-dev
   api_key:
-    secure: ZE2yQmOnGk3EpekiKBU0RwX3X6Uu35KFDj4vp9sxyRhbbiI9EavNrAkuFJlIbyUfhHryUPqlWAIrj4FkdmrL5CWlXjbUBYkRnL0mKj8NyeOPXmjTzsqt+0+s7S9V2HxXcfgFRIqDCYDN27uJAg3NYg6JD9sDvzwFXAT6BLOhAfA=
+    secure: U2IBxONfl3+C1h4vTg9YH+Y2Jhmo15glDOymPwr/WtwPP+I26PcEBb1gSjb/NUjoz1MoZ1JytJqdVQmLBJOHtM6Sk6gZhyekpvT4SdE5UIkJz5lt1G90Veh+mSvnX1pRj6xpkEa+4DB3+D2uBJcOz5dPl9/PKWGLq/8YprcOrhg=
   on: develop
