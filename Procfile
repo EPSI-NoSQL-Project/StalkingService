@@ -1,1 +1,1 @@
-web: rackup config.ru --port 8080
+web: bundle exec rackup config.ru -p $PORT
