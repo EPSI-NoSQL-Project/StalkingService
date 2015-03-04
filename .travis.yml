@@ -9,3 +9,4 @@ deploy:
   app: stalking-service-dev
   api_key:
     secure: ZE2yQmOnGk3EpekiKBU0RwX3X6Uu35KFDj4vp9sxyRhbbiI9EavNrAkuFJlIbyUfhHryUPqlWAIrj4FkdmrL5CWlXjbUBYkRnL0mKj8NyeOPXmjTzsqt+0+s7S9V2HxXcfgFRIqDCYDN27uJAg3NYg6JD9sDvzwFXAT6BLOhAfA=
+  on: develop
