@@ -1,6 +1,18 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ashikawa-core (0.14.0)
+      equalizer (~> 0.0.8)
+      faraday (~> 0.9.0)
+      faraday_middleware (~> 0.9.1)
+    bundle (0.0.1)
+      bundler
+    equalizer (0.0.9)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
+    multipart-post (2.0.0)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
@@ -12,12 +24,16 @@ GEM
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
     tilt (1.4.1)
+    yell (2.0.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  ashikawa-core
+  bundle
   rack
   rake
   shotgun
   sinatra
+  yell
