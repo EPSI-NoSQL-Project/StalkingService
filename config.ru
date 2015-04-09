@@ -4,12 +4,12 @@ require 'sinatra'
 set :port, 8080
 
 get '/' do
-	erb :hello, :locals => {:nameToFind => ""}
+	erb :index, :locals => {:nameToFind => ""}
 end
 
 post '/people' do
 	
-	erb :hello, :locals => {:nameToFind => params[:nameToFind]}
+	erb :index, :locals => {:nameToFind => params[:nameToFind]}
 end
 
 get '/*' do
