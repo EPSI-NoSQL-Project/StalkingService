@@ -5,7 +5,48 @@
 	<title>Stalker</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://getbootstrap.com/examples/sticky-footer/sticky-footer.css">
-	<script src="/js/jquery-1.6.2.js"></script>
+	<link rel="stylesheet" href="http://getbootstrap.com/examples/sticky-footer/sticky-footer.css">
+	<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$( "#nameToFind" ).autocomplete({
+				minLength: 2,
+				source: function(request, response) 
+				{
+					var suggestions = [];
+					var uriElasticsearch = "http://localhost:9200/people/person/_search";
+					uriElasticsearch += "?q=name:*"+request.term+"*";
+					uriElasticsearch += "&fields=_id,name,location";
+					
+					$.ajax({
+						url: uriElasticsearch,
+						dataType: 'jsonp',
+						success:function(data)
+						{
+							var result = $.map(data, function(jsonpData) { return jsonpData; });
+							var persons = result[3].hits;
+							persons.forEach(function(entry) {
+								suggestions.push({
+									"id": entry._id, 
+									"value": entry.fields.name + "(" + entry.fields.location + ")"
+								});
+							});
+							response(suggestions);
+						},
+						error:function(jqXHR,textStatus,errorThrown)
+						{
+							alert("You can not send Cross Domain AJAX requests: "+errorThrown);
+						}
+					});
+				},
+				select : function(event, ui){
+					alert( ui.item.id );
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -16,7 +57,7 @@
 			 <div class="form-group">
 				<label for="nameToFind" class="col-sm-2 control-label">Name :</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" id="nameToFind" name="nameToFind" 
+				<input type="text" class="form-control ui-widget" id="nameToFind" name="nameToFind" 
 					required placeholder="Toto"
 					value="<%= nameToFind %>">
 				</div>
