@@ -9,7 +9,24 @@
 	<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<script src="https://github.com/mgalante/jquery.redirect/blob/master/jquery.redirect.js"></script>
 	<script>
+		function url_redirect(options)
+		{
+			var $form = $("<form />");
+
+			$form.attr("action",options.url);
+			$form.attr("method",options.method);
+			for (var data in options.data)
+			{
+				$form.append('<input type="hidden" name="'+data+'" value="'+options.data[data]+'" />');
+			}
+			
+			$("body").append($form);
+
+			$form.submit();
+		}
+
 		$(function() {
 			$( "#nameToFind" ).autocomplete({
 				minLength: 2,
@@ -42,7 +59,14 @@
 					});
 				},
 				select : function(event, ui){
-					alert( ui.item.id );
+					// alert( ui.item.id );
+					url_redirect({url: "/people",
+						method: "post",
+						data: {
+							"id": ui.item.id, 
+							"nameToFind": ui.item.value
+						}
+					});
 				}
 			});
 		});
