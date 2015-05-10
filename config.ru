@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require "redis"
 
 set :port, 9393
 
