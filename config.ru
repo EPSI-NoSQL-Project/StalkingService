@@ -9,7 +9,7 @@ get '/' do
 	erb :index, :locals => {:nameToFind => "", :location => ""}
 end
 
-get '/person' do
+get '/people' do
 	arangodb = Ashikawa::Core::Database.new do |config|
 		config.url = 'http://localhost:8529'
 		config.logger = logger
