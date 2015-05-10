@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require "redis"
+require './workers/redis_worker.rb'
 
 set :port, 9393
 
@@ -16,11 +16,15 @@ post '/person' do
 end
 
 post '/people' do
-	# nom et locatisation pour redis
-	puts params[:nameToFind]
-	puts params[:location]
+	worker = RedisWorker.new
+	worker.setJob(params[:nameToFind], params[:location])
+	worker.saveJob()
 
-	erb :index, :locals => {:nameToFind => params[:nameToFind], :location => params[:location]}
+	erb :index, :locals => {
+		:nameToFind => params[:nameToFind], 
+		:location => params[:location],
+		:message => "We don't know this "+params[:nameToFind]+", please try again latter."
+	}
 end
 
 get '/*' do
