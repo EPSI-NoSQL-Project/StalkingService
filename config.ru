@@ -23,8 +23,7 @@ post '/person' do
 			:location => thePerson['location'],
 			:twitterInfos => thePerson['data']['twitter_crawler'],
 			:googleInfos => thePerson['data']['google_crawler'],
-			:enjoygram_Infos => thePerson['data']['enjoygram_crawler'],
-			:showDetails => 1
+			:enjoygram_Infos => thePerson['data']['enjoygram_crawler']
 		}
 end
 

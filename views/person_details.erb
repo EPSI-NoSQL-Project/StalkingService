@@ -7,7 +7,93 @@
 	<link rel="stylesheet" href="http://getbootstrap.com/examples/sticky-footer/sticky-footer.css">
 </head>
 <body>
+	<div class="container">
+		<div class="page-header">
+			<h1>
+				<a href="/"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
+				<%= nameToFind %> from <%= location %>
+			</h1>
+		</div>
 
+		<h3>Twitter - users</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>avatar</th>
+					<th>surnom</th>
+					<th>description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% twitterInfos.each do |twitterLine| %>
+					<% twitterLine['users'].each do |userLine| %>
+						<tr>
+							<td>
+								<img src="<%=userLine['lien_image_profile']%>" alt="<%=userLine['lien_image_profile']%>"/> 
+							</td>
+							<td><%=userLine['surnom']%></td>
+							<td><%=userLine['description']%></td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+
+		<h3>Twitter - amis</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>nom</th>
+					<th>pseudo</th>
+					<th>description</th>
+					<th>statuses count</th>
+					<th>friends count</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% twitterInfos.each do |twitterLine| %>
+					<% twitterLine['amis'].each do |friendLine| %>
+						<tr>
+							<td><%=friendLine['nom']%></td>
+							<td><%=friendLine['pseudo']%></td>
+							<td><%=friendLine['description']%></td>
+							<td><%=friendLine['statuses_count']%></td>
+							<td><%=friendLine['friends_count']%></td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+
+		<h3>Twitter - status</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>retweet</th>
+					<th>time zone</th>
+					<th>creation status</th>
+					<th>contenu status</th>
+					<th>source status</th>
+					<th>profile image</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% twitterInfos.each do |twitterLine| %>
+					<% twitterLine['status'].each do |statusLine| %>
+						<tr>
+							<td><%=statusLine['retweet']%></td>
+							<td><%=statusLine['time_zone']%></td>
+							<td><%=statusLine['creation_status']%></td>
+							<td><%=statusLine['contenu_status']%></td>
+							<td><%=statusLine['source_status']%></td>
+							<td><%=statusLine['profile_image_url_https']%></td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+
+	</div>
 </body>
 <footer class="footer">
 	<div class="text-center">
