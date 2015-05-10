@@ -4,14 +4,22 @@ require 'sinatra'
 set :port, 9393
 
 get '/' do
-	erb :index, :locals => {:nameToFind => ""}
+	erb :index, :locals => {:nameToFind => "", :location => ""}
+end
+
+post '/person' do
+	# Récupère l'id pour arangodDB
+	puts params[:id]
+
+	erb :index, :locals => {:nameToFind => params[:nameToFind], :location => ""}
 end
 
 post '/people' do
-	# Récupère l'id pour le moment
-	puts params[:id]
+	# nom et locatisation pour redis
+	puts params[:nameToFind]
+	puts params[:location]
 
-	erb :index, :locals => {:nameToFind => params[:nameToFind]}
+	erb :index, :locals => {:nameToFind => params[:nameToFind], :location => params[:location]}
 end
 
 get '/*' do
