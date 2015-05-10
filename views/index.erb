@@ -58,13 +58,12 @@
 					});
 				},
 				select : function(event, ui){
-					// alert( ui.item.id );
 					url_redirect({
 						url: "/person",
-						method: "post",
+						method: "GET",
 						data: {
 							"id": ui.item.id, 
-							"nameToFind": ui.item.value
+							"activeNav": "google"
 						}
 					});
 				}

@@ -9,7 +9,7 @@ get '/' do
 	erb :index, :locals => {:nameToFind => "", :location => ""}
 end
 
-post '/person' do
+get '/person' do
 	arangodb = Ashikawa::Core::Database.new do |config|
 		config.url = 'http://localhost:8529'
 		config.logger = logger
@@ -19,11 +19,13 @@ post '/person' do
 	thePerson = peopleCollection.fetch(params[:id])
 	
 	erb :person_details, :locals => {
+			:id => params[:id], 
 			:nameToFind => thePerson['name'], 
 			:location => thePerson['location'],
 			:twitterInfos => thePerson['data']['twitter_crawler'],
 			:googleInfos => thePerson['data']['google_crawler'],
-			:enjoygram_Infos => thePerson['data']['enjoygram_crawler']
+			:enjoygramInfos => thePerson['data']['enjoygram_crawler'],
+			:activeNav => params[:activeNav]
 		}
 end
 
