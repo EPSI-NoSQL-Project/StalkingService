@@ -23,7 +23,7 @@ post '/people' do
 	erb :index, :locals => {
 		:nameToFind => params[:nameToFind], 
 		:location => params[:location],
-		:message => "We don't know this "+params[:nameToFind]+", please try again latter."
+		:message => "We don't know "+params[:nameToFind]+", please try again latter."
 	}
 end
 
