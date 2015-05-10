@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'ashikawa-core'
 require './workers/redis_worker.rb'
 
 set :port, 9393
@@ -9,10 +10,22 @@ get '/' do
 end
 
 post '/person' do
-	# Récupère l'id pour arangodDB
-	puts params[:id]
+	arangodb = Ashikawa::Core::Database.new do |config|
+		config.url = 'http://localhost:8529'
+		config.logger = logger
+	end
 
-	erb :index, :locals => {:nameToFind => params[:nameToFind], :location => ""}
+	peopleCollection = arangodb['people']
+	thePerson = peopleCollection.fetch(params[:id])
+	
+	erb :person_details, :locals => {
+			:nameToFind => thePerson['name'], 
+			:location => thePerson['location'],
+			:twitterInfos => thePerson['data']['twitter_crawler'],
+			:googleInfos => thePerson['data']['google_crawler'],
+			:enjoygram_Infos => thePerson['data']['enjoygram_crawler'],
+			:showDetails => 1
+		}
 end
 
 post '/people' do
