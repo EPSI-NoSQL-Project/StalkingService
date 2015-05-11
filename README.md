@@ -14,16 +14,28 @@ Then it suggests a list of person corresponding to the name and the location.
 * If the person is unknown, the user can click on "search" to indicate the system has to find this person.
 The name and the location is save into Redis in a job "workers".
 
+![alt tag](/screenshot/01_unkown.png)
+
 StalkingWorkerPool will work on this job and launch all the crawlers to find information about this new person.
 The next time the user will ask for this person, the autocomple will suggest him.
+
+![alt tag](/screenshot/02_crawlers.png)
+
+![alt tag](/screenshot/03_elasticsearch.png)
 
 * If the person is in the suggestion list, then we use Ruby to attack ArangoDB and retrive this person's information.
 Finally, we present the data group by source.
 Here is an exemple :
 
+![alt tag](/screenshot/04_autocomplete.png)
+
+![alt tag](/screenshot/05_person_details.png)
+
 ===
 
 ## Technical help
+
+![alt tag](/screenshot/00_schema.png)
 
 We kept default ports for each database. Here is the recap list :
 - ArangoDB : 8529
