@@ -25,6 +25,7 @@ get '/people' do
 			:twitterInfos => thePerson['data']['twitter_crawler'],
 			:googleInfos => thePerson['data']['google_crawler'],
 			:enjoygramInfos => thePerson['data']['enjoygram_crawler'],
+			:youtubeInfos => thePerson['data']['youtube_crawler'],
 			:activeNav => params[:activeNav]
 		}
 end

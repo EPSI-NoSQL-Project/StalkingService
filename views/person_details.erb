@@ -17,18 +17,24 @@
 
 		<ul class="nav nav-tabs">
 			<li role="presentation" class="<%= activeNav == "google" ? "active" : '' %>">
-				<a href="/person?id=<%=id%>&activeNav=google">
+				<a href="/people?id=<%=id%>&activeNav=google">
 					<img src="img/google_logo.png" alt="Google" width="40" height="40"/>
 				</a>
 			</li>
 			<li role="presentation" class="<%= activeNav == "twitter" ? "active" : '' %>">
-				<a href="/person?id=<%=id%>&activeNav=twitter">
+				<a href="/people?id=<%=id%>&activeNav=twitter">
 					<img src="img/twitter_logo.png" alt="Twitter" width="40" height="40"/>
 				</a>
 			</li>
 			<li role="presentation" class="<%= activeNav == "enjoygram" ? "active" : '' %>">
-				<a href="/person?id=<%=id%>&activeNav=enjoygram">
+				<a href="/people?id=<%=id%>&activeNav=enjoygram">
 					<img src="img/enjoygram_logo.png" alt="Enjoygram" width="50" height="40"/>
+				</a>
+			</li>
+
+			<li role="presentation" class="<%= activeNav == "youtube" ? "active" : '' %>">
+				<a href="/people?id=<%=id%>&activeNav=youtube">
+					<img src="img/youtube_logo.png" alt="youtube" width="50" height="40"/>
 				</a>
 			</li>
 		</ul>
@@ -189,6 +195,37 @@
 	<% end %>
 <% end %>
 
+<% if activeNav == "youtube"  %>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>author</th>
+					<th>title</th>
+					<th>description</th>
+					<th>publishedAt</th>
+					<th>video</th>
+				</tr>
+			</thead>
+			<tbody>
+
+		<% youtubeInfos.each do |youtubeLine| %>
+				<tr>
+					<td><%=youtubeLine['channelTitle']%></td>
+					<td><%=youtubeLine['titre']%></td>
+					<td><%=youtubeLine['description']%></td>
+					<td><%=youtubeLine['publishedAt']%></td>
+					<td>
+						<a href="<%=youtubeLine['link']%>">
+							<img src="<%=youtubeLine['preview']%>" alt="<%=youtubeLine['preview']%>"/> 
+						</a>
+					</td>
+				</tr>
+		<% end %>
+
+			</tbody>
+		</table>
+<% end %>
+		
 	</div>
 </body>
 <footer class="footer">
